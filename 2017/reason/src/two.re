@@ -13,7 +13,7 @@ let calculate = (string) => {
   let rows = Js.String.split("\n", string);
 
   rows
-    |> Array.map((s) => Js.String.split("\t", s))
+    |> Array.map(Js.String.split("\t"))
     |> Array.map(Array.map(int_of_string))
     |> Array.map((c) => {
       c |> Array.sort(Pervasives.compare);
