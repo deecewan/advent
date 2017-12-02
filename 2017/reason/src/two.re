@@ -29,3 +29,32 @@ let calculate = (string) => {
 
 Js.log("EXAMPLE: Expected: " ++ string_of_int(example_answer) ++ ". Actual: " ++ string_of_int(calculate(example)) ++ ".");
 Js.log("Part One output: " ++ string_of_int(calculate(input)) ++ ".");
+
+let calculate_part_two = (string) => {
+  let rows = Js.String.split("\n", string);
+
+  rows
+    |> Array.map(Js.String.split("\t"))
+    |> Array.map(Array.map(float_of_string))
+    |> Array.map((c) => {
+        Array.mapi((i, x) => {
+          Array.mapi((j, z) => {
+            if (i === j) {
+              0.
+            } else {
+              x /. z
+            }
+          }, c) |> Array.to_list;
+        }, c) |> Array.to_list |> List.concat;
+      })
+    |> Array.map(List.filter(x => x > 0. && Js.Math.round(x) === x))
+    |> Array.to_list
+    |> List.flatten
+    |> List.fold_left((acc, curr) => acc +. curr, 0.)
+};
+
+let second_example = "5\t9\t2\t8\n9\t4\t7\t3\n3\t8\t6\t5";
+let second_answer = 9;
+
+Js.log("EXAMPLE: Expected: " ++ string_of_int(second_answer) ++ ". Actual: " ++ string_of_float(calculate_part_two(second_example)) ++ ".");
+Js.log("Part two output: " ++ string_of_float(calculate_part_two(input)) ++ ".");
