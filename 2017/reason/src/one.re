@@ -1,4 +1,9 @@
-let input = Node.Fs.readFileSync("./one_input.txt", `utf8);
+let dirname = switch [%bs.node __dirname] {
+  | None => ""
+  | Some(dir) => dir
+};
+let input_path = Node.Path.join([|dirname, "..", "..", "inputs", "one.txt"|]);
+let input = Node.Fs.readFileSync(input_path, `utf8);
 
 let inverse_captcha = (string, step_calc) => {
   let string = String.trim(string);
