@@ -12,6 +12,10 @@
 
   Below, I've written some code that is correct for *my* input. It's not a 
   general solution.
+
+  The next part was a sequence called 'Square spiral of sums of selected preceding terms'
+  which is available on OEIS (https://oeis.org/A141481). This had my solution as the 58th
+  term, 266, 330. Work smarter, not harder.
  */
 
 let next_larger_square = (input) => {
