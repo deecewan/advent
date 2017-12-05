@@ -35,14 +35,19 @@ let steps_back_from_edge = (bigger_square: int, input: int) => {
 
 let value = 265149;
 
+let print_result = (result) => Js.log("Total steps: " ++ string_of_int(result));
 
 let calculate = (input) => {
+  Js.log("Result for input " ++ string_of_int(input) ++ ":");
   let larger_square = next_larger_square(input);
   let steps_back = steps_back_from_edge(larger_square, input);
-  let result = (steps_to_center(larger_square) * 2) - steps_back;
-
-  Js.log("Total steps: " ++ string_of_int(result));
+  let steps_from_center = steps_to_center(larger_square);
+  if (steps_from_center < steps_back) {
+    print_result(steps_back);
+  } else {
+    print_result((steps_to_center(larger_square) * 2) - steps_back);
+  }
 };
 
-Js.log("Result for input " ++ string_of_int(value) ++ ":");
 calculate(value);
+calculate(325489);
